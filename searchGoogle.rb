@@ -13,7 +13,7 @@ class String
     # 'self' is the member variable holding the string
 	puts 'Searching Google for "' << self << '":'
     # check for empty search string, raise error if zero length
-	if self.length == 0
+	if self.empty?
 	  puts "ERROR - google needs a string to search with."
 	  puts '--------------------------------------------------'
 	  return
@@ -26,12 +26,12 @@ class String
 	# ie <a class="l" href="http://somesite.com">Link title</a>
 	items = (doc/"a.l")
 	# check if any results
-	if items.length == 0
+	if items.empty?
 	  puts "No results returned."
 	  puts '--------------------------------------------------'
 	  return
 	end
-	i = 1 # counter
+	i = 1 # initialise result counter
 	# loop thru items
 	items.each do |item|
 	  # display result counter and item link title (using inner_text method)
