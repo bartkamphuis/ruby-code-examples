@@ -41,11 +41,15 @@ class String
 	  puts i.to_s << ' - ' << item.inner_text
 	  # display item url using attributes method
 	  puts item.attributes['href']
-	  # perform accessibility check
+		# instantiate a new mechanize object
 		agent = WWW::Mechanize.new
+		# fetch a page
 		page = agent.get(item.attributes['href'])
+		# instantiate a new accessibility check object
 		raakttest = Raakt::Test.new(page.body)
+		# get accessibility check results
 		result = raakttest.all
+		# check result and print to screen
 		if result.length > 0
 		  puts "# Accessibility problems detected:"
 		  puts result
