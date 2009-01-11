@@ -2,7 +2,7 @@
 # The returned html is parsed using Hpricot, and the link text and url for each search result item is printed
 # install Hpricot with 'gem install hpricot', info: http://github.com/why/hpricot/tree/master
 # usage: 'search terms string'.searchGoogle(maximum_number_of_results) - see examples below
-# to run this file from command line: ruby searchGoogle.rb
+# to run this file from command line: ruby searchGoogle.rb search+terms
 
 
 # require several code libraries 
@@ -44,11 +44,15 @@ class String
   end
 end
 
-
-# try some example searches
-'symfony'.searchGoogle # get 10 results
-'ruby language'.searchGoogle(5) # get 5 results
-''.searchGoogle # empty search should exit gracefully
-'34692y2d3h93'.searchGoogle # no results returned
-'site:voomstudio.com'.searchGoogle(100) # all indexed pages, up to 100
-"extending ruby core classes".searchGoogle(500) # a maximum of 100 results are returned
+# check if command line url argument exists
+if ARGV[0].empty?
+	# try some example searches
+	'symfony'.searchGoogle # get 10 results
+	'ruby language'.searchGoogle(5) # get 5 results
+	''.searchGoogle # empty search should exit gracefully
+	'34692y2d3h93'.searchGoogle # no results returned
+	'site:voomstudio.com'.searchGoogle(100) # all indexed pages, up to 100
+	"extending ruby core classes".searchGoogle(500) # only a maximum of 100 results are returned
+else 
+  ARGV[0].searchGoogle
+end
