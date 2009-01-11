@@ -8,13 +8,13 @@
 # require several code libraries 
 %w[rubygems open-uri cgi hpricot].each { |f| require f }
 class String
-  # define new String method with 10 search terms as default
+  # define new String method with 10 search results as default
   def searchGoogle(num=10)
     # 'self' is the member variable holding the string
 	puts 'Searching Google for "' << self << '":'
     # check for empty search string, raise error if zero length
 	if self.empty?
-	  puts "ERROR - google needs a string to search with."
+	  puts "ERROR: empty string."
 	  puts '--------------------------------------------------'
 	  return
 	end
