@@ -2,7 +2,7 @@
 # The returned html is parsed using Hpricot, and the link text and url for each search result item is shown
 # Each returned url is then checked for measurable accessibility problems
 # install Hpricot with 'gem install hpricot', info: http://github.com/why/hpricot/tree/master
-# install Raakt and Mechanize with 'gem install raakt', 'gem install mechanize'
+# install Raakt with 'gem install raakt', info: http://www.peterkrantz.com/raakt/wiki/
 # usage: 'somesite.com'.checkAccessibility(maximum_number_of_pages) - see examples below
 # to run this file from command line: ruby checkAccessibility.rb somesite.com
 
