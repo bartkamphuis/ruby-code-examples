@@ -8,7 +8,7 @@
 
 
 # require several code libraries 
-%w[rubygems open-uri cgi hpricot mechanize raakt].each { |f| require f }
+%w[rubygems open-uri cgi hpricot raakt].each { |f| require f }
 class String
   # define new String method with 10 search results as default
   def checkAccessibility(num=10)
@@ -37,15 +37,13 @@ class String
 	i = 1 # initialise result counter
 	# loop thru items
 	items.each do |item|
-	  # display result counter and item link title (using inner_text method)
-	  puts i.to_s << ' - ' << item.inner_text
-	  # display item url using attributes method
-	  puts item.attributes['href']
-		# instantiate a new mechanize object
-		agent = WWW::Mechanize.new
-		# fetch a page
-		page = agent.get(item.attributes['href'])
-		# instantiate a new accessibility check object
+		# display result counter and item link title (using inner_text method)
+		puts i.to_s << ' - ' << item.inner_text
+		# display item url using attributes method
+		puts item.attributes['href']
+		# fetch page html
+		page = Net::HTTP.get_response(URI.parse(item.attributes['href']))
+		# instantiate a new accessibility check object and test page body
 		raakttest = Raakt::Test.new(page.body)
 		# get accessibility check results
 		result = raakttest.all
@@ -56,7 +54,7 @@ class String
 		else
 		  puts "# No measurable accessibility problems were detected."
 		end
-	  i = i + 1
+		i = i + 1
 	end
 	puts '--------------------------------------------------'
   end
